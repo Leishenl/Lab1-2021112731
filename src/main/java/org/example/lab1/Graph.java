@@ -120,7 +120,7 @@ public class Graph {
 
         // 检查输入的单词是否在图中出现
         if (!this.wordsMap.containsKey(word1) || !this.wordsMap.containsKey(word2)) {
-            return "No word1 or word2 in the graph!";
+            return "No word1 or word2 in the graph!  ";
         }
 
         List<String> bridgeWords = new ArrayList<>();

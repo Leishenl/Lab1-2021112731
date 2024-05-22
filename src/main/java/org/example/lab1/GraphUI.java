@@ -119,7 +119,7 @@ public class GraphUI extends Application {
                 // 计算从起始节点到终止节点的最短路径
                 List<List<String>> paths = graph.calcAllShortestPaths(startNode, endNode);
                 if (paths.isEmpty() || paths.get(0).contains("路径不存在")) {
-                    shortestPathOutput.setText("未找到路径，可能起始或终止单词不存在于图中。");
+                    shortestPathOutput.setText("未找到路径，可能是起始或终止单词不存在于图中。");
                 } else {
                     StringBuilder pathsOutput = new StringBuilder();
                     for (List<String> path : paths) {
