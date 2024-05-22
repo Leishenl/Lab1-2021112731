@@ -72,7 +72,7 @@ public class GraphUI extends Application {
         // 根据bridge word生成新文本
         TextField inputTextField = new TextField();
         inputTextField.setPromptText("放入文本");
-        Button generateNewTextButton = new Button("生成新文本");
+        Button generateNewTextButton = new Button("生成了新文本");
         TextArea newTextOutput = new TextArea();
         newTextOutput.setEditable(false);
         generateNewTextButton.setOnAction(e -> {

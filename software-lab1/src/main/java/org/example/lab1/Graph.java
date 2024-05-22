@@ -113,7 +113,7 @@ public class Graph {
             Process process = pb.start();
             process.waitFor();
         } catch (IOException | InterruptedException e) {
-            System.err.println("Error rendering graph: " + e.getMessage());
+            System.err.println("Error rendering graph : " + e.getMessage());
         }
     }
 
@@ -145,7 +145,7 @@ public class Graph {
         }
     }
     public String generateNewText(String inputText) {
-        System.out.println("----------------------------生成新文本-------------------------");
+        System.out.println("----------------------------生成了新文本-------------------------");
         String[] new_words = inputText.split("\\s+");
         // 对每对相邻单词进行处理
         StringBuilder newText = new StringBuilder();
