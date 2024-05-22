@@ -74,7 +74,7 @@ public class Graph {
     }
     // 打印图的信息
     public void showDirectedGraph(Graph p) {
-        System.out.println("-------------------------------有向带权图------------------------------");
+        System.out.println("---------------------------有向带权图------------------------------");
         for (String node : p.getWordsMap().keySet()) {
             System.out.print(node+"->");
             System.out.print("Neighbors: ");

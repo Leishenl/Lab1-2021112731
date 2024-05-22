@@ -93,7 +93,7 @@ public class GraphUI extends Application {
             String endNode = endNodeField.getText().trim();
 
             if (startNode.isEmpty()) {
-                shortestPathOutput.setText("请输入起始节点的名称。");
+                shortestPathOutput.setText("请输入起始节点的名称：");
                 return;
             }
 
