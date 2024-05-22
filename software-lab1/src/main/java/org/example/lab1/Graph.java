@@ -85,7 +85,7 @@ public class Graph {
             }
             System.out.println();
         }
-        System.out.println("----------------------------------------------------------------------");
+      
     }
     public void generateDotFile(String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
