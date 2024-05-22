@@ -180,6 +180,7 @@ public class GraphUI extends Application {
         primaryStage.show();
     }
     private void showImageInNewStage(String imagePath) {
+        int i=0;
         Stage newStage = new Stage();
         newStage.setTitle("生成的图");
         ImageView imageView = new ImageView(new Image("file:" + imagePath));
