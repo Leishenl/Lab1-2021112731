@@ -22,6 +22,9 @@ public class Graph {
     public void setWords(List<String> words) {
         Words = words;
     }
+    public void setcurrentNode(String currentNode) {
+        this.currentNode = currentNode;
+    }
     public Map<String, Map<String, Integer>> getWordsMap() {
         return wordsMap;
     }
