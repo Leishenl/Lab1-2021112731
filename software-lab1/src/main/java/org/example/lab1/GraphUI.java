@@ -72,7 +72,7 @@ public class GraphUI extends Application {
         // 根据bridge word生成新文本
         TextField inputTextField = new TextField();
         inputTextField.setPromptText("放入文本");
-        Button generateNewTextButton = new Button("生成新文本");
+        Button generateNewTextButton = new Button("生成了新文本");
         TextArea newTextOutput = new TextArea();
         newTextOutput.setEditable(false);
         generateNewTextButton.setOnAction(e -> {
@@ -182,7 +182,7 @@ public class GraphUI extends Application {
     private void showImageInNewStage(String imagePath) {
         int i=0;
         Stage newStage = new Stage();
-        newStage.setTitle("生成的图");
+        newStage.setTitle("生成的图：");
         ImageView imageView = new ImageView(new Image("file:" + imagePath));
         imageView.setPreserveRatio(true);
         imageView.setFitHeight(600);
