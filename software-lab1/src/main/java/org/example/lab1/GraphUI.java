@@ -182,7 +182,7 @@ public class GraphUI extends Application {
     private void showImageInNewStage(String imagePath) {
         int i=0;
         Stage newStage = new Stage();
-        newStage.setTitle("生成的图");
+        newStage.setTitle("生成的图：");
         ImageView imageView = new ImageView(new Image("file:" + imagePath));
         imageView.setPreserveRatio(true);
         imageView.setFitHeight(600);
