@@ -144,7 +144,6 @@ public class Graph {
     public String generateNewText(String inputText) {
         System.out.println("----------------------------生成新文本-------------------------");
         String[] new_words = inputText.split("\\s+");
-        // 对每对相邻单词进行处理
         StringBuilder newText = new StringBuilder();
         for (int i = 0; i < new_words.length - 1; i++) {
             String word1 =new_words[i];
@@ -244,12 +243,12 @@ public class Graph {
             if (path.get(path.size() - 1).equals(word1)) {  // 找到一条完整路径
                 List<String> fullPath = new ArrayList<>(path);
                 Collections.reverse(fullPath);  // 反转路径
+                int length = calculatePathLength(fullPath, this.wordsMap);  // 计算路径长度
                 allPaths.add(fullPath);  // 添加到所有路径列表中
-                int length = fullPath.size() - 1;  // 路径长度为节点数减一
                 pathLengths.add(length);  // 存储路径长度
                 path.remove(path.size() - 1);  // 回溯
                 iterators.remove(iterators.size() - 1);  // 移除对应的迭代器
-            } else {
+            }else {
                 Iterator<String> it = iterators.get(iterators.size() - 1);
                 if (it.hasNext()) {  // 还有前驱节点可以遍历
                     String predecessor = it.next();
@@ -279,7 +278,16 @@ public class Graph {
         System.out.println("---------------------------------------------------------------");
         return allPaths;
     }
-
+    private int calculatePathLength(List<String> path, Map<String, Map<String, Integer>> wordsMap) {
+        int length = 0;
+        for (int i = 0; i < path.size() - 1; i++) {
+            String currentNode = path.get(i);
+            String nextNode = path.get(i + 1);
+            Map<String, Integer> neighbors = wordsMap.get(currentNode);
+            length += neighbors.get(nextNode);  // 加上当前边的权重
+        }
+        return length;
+    }
     public Map<String, List<List<String>>> calcAllShortestPathsToAll(String word1) {
         word1 = word1.toLowerCase();
         Map<String, List<List<String>>> allPathsToAll = new HashMap<>();
@@ -305,7 +313,6 @@ public class Graph {
         for (Map<String, Integer> neighbors : this.wordsMap.values()) {
             allNodes.addAll(neighbors.keySet());
         }
-
         return allNodes;
     }
     public String randomWalk() {
