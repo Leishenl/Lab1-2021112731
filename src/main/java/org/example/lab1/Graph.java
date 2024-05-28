@@ -188,7 +188,7 @@ public class Graph {
         // 初始化距离和前驱节点
         Map<String, Integer> distance = new HashMap<>();  // 存储每个节点的最短距离
         Map<String, List<String>> predecessors = new HashMap<>();  // 存储每个节点的前驱节点列表
-        Set<String> visited = new HashSet<>();  // 记录已访问的节点
+        Set<String> visited = new HashSet<>();
         for (String node : this.Words) {
             distance.put(node, Integer.MAX_VALUE);  // 初始化所有节点的距离为无限大
             predecessors.put(node, new ArrayList<>());  // 初始化前驱节点列表为空

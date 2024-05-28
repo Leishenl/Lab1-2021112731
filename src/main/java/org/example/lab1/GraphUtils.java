@@ -16,7 +16,7 @@ public class GraphUtils {
         try (Scanner scanner = new Scanner(file)) {
             scanner.useDelimiter("\\s+|,\\s*|\\.\\s*"); // 使用空白符或逗号、点后跟空白符作为分隔符
             while (scanner.hasNext()) {
-                String word = scanner.next().toLowerCase().replaceAll("[^a-zA-Z]", ""); // 清洗非字母字符
+                String word = scanner.next().toLowerCase().replaceAll("[^a-zA-Z]", " "); // 清洗非字母字符
                 if (!word.isEmpty()) {
                     words.add(word);
                 }
