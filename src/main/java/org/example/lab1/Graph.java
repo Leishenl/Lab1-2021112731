@@ -148,16 +148,14 @@ public class Graph {
         for (int i = 0; i < new_words.length - 1; i++) {
             String word1 =new_words[i];
             String word2 = new_words[i + 1];
-            newText.append(word1).append(" "); // 将单词1添加到新文本中
+            newText.append(word1).append(" ");
             // 查找桥接词
             String bridgeWords = queryBridgeWords(word1, word2);
             if(bridgeWords.contains("are")){
                 // 提取 'are: ' 后面的所有文本直到句点前
                 String bridgeWordsPart = bridgeWords.substring(bridgeWords.indexOf("are: ") + 5, bridgeWords.length() - 1);
-                // 分割提取的部分来获取单独的桥接词
                 String[] bridgeWord = bridgeWordsPart.split(", ");
                 String wordsWithBrackets = Arrays.toString(bridgeWord);
-                // 去除首尾的方括号
                 String trimmedWords = wordsWithBrackets.substring(1, wordsWithBrackets.length() - 1);
 
                 // 使用逗号分割字符串为数组
@@ -165,12 +163,12 @@ public class Graph {
 
                 // 随机选择一个元素
                 Random random = new Random();
-                String selectedWord = wordsArray[random.nextInt(wordsArray.length)]; // 随机选取一个元素
+                String selectedWord = wordsArray[random.nextInt(wordsArray.length)];
 
-                newText.append(selectedWord).append(" "); // 将桥接词添加到新文本中
+                newText.append(selectedWord).append(" ");
             }
         }
-        newText.append(new_words[new_words.length - 1]); // 将最后一个单词添加到新文本中
+        newText.append(new_words[new_words.length - 1]);
         return newText.toString();
     }
 
@@ -193,8 +191,7 @@ public class Graph {
             distance.put(node, Integer.MAX_VALUE);  // 初始化所有节点的距离为无限大
             predecessors.put(node, new ArrayList<>());  // 初始化前驱节点列表为空
         }
-        distance.put(word1, 0);  // 起点的距离设为0
-        // 使用一个集合来模拟优先队列
+        distance.put(word1, 0);
         Set<String> unvisited = new HashSet<>(this.Words);
         // Dijkstra算法
         while (!unvisited.isEmpty()) {
@@ -218,11 +215,11 @@ public class Graph {
                 for (String v : neighbors.keySet()) {
                     int weight = neighbors.get(v);
                     int new_distance = distance.get(u) + weight;
-                    if (new_distance < distance.get(v)) {  // 找到更短的路径
+                    if (new_distance < distance.get(v)) {
                         distance.put(v, new_distance);
-                        predecessors.get(v).clear();  // 清空之前的前驱节点
-                        predecessors.get(v).add(u);  // 添加新的前驱节点
-                    } else if (new_distance == distance.get(v)) {  // 找到相同长度的路径
+                        predecessors.get(v).clear();
+                        predecessors.get(v).add(u);
+                    } else if (new_distance == distance.get(v)) {
                         predecessors.get(v).add(u);  // 添加额外的前驱节点
                     }
                 }
@@ -240,22 +237,22 @@ public class Graph {
         iterators.add(predecessors.get(word2).iterator());  // 初始化迭代器
 
         while (!path.isEmpty()) {
-            if (path.get(path.size() - 1).equals(word1)) {  // 找到一条完整路径
+            if (path.get(path.size() - 1).equals(word1)) {
                 List<String> fullPath = new ArrayList<>(path);
-                Collections.reverse(fullPath);  // 反转路径
-                int length = calculatePathLength(fullPath, this.wordsMap);  // 计算路径长度
-                allPaths.add(fullPath);  // 添加到所有路径列表中
-                pathLengths.add(length);  // 存储路径长度
+                Collections.reverse(fullPath);
+                int length = calculatePathLength(fullPath, this.wordsMap);
+                allPaths.add(fullPath);
+                pathLengths.add(length);
                 path.remove(path.size() - 1);  // 回溯
                 iterators.remove(iterators.size() - 1);  // 移除对应的迭代器
             }else {
                 Iterator<String> it = iterators.get(iterators.size() - 1);
-                if (it.hasNext()) {  // 还有前驱节点可以遍历
+                if (it.hasNext()) {
                     String predecessor = it.next();
-                    path.add(predecessor);  // 添加前驱节点到路径中
+                    path.add(predecessor);
                     iterators.add(predecessors.get(predecessor).iterator());  // 为前驱节点添加新的迭代器
-                } else {  // 当前节点的前驱节点遍历完毕
-                    path.remove(path.size() - 1);  // 回溯
+                } else {
+                    path.remove(path.size() - 1);
                     iterators.remove(iterators.size() - 1);  // 移除对应的迭代器
                 }
             }
@@ -273,7 +270,7 @@ public class Graph {
         } else {
             List<List<String>> result = new ArrayList<>();
             result.add(Arrays.asList("没有找到路径"));
-            return result;  // 返回包含错误消息的列表
+            return result;
         }
         System.out.println("---------------------------------------------------------------");
         return allPaths;
@@ -308,7 +305,6 @@ public class Graph {
     }
     public Set<String> getAllNodes() {
         Set<String> allNodes = new HashSet<>(this.wordsMap.keySet());  // 先添加所有的键（源节点）
-
         // 现在添加所有的值（目标节点），确保没有遗漏
         for (Map<String, Integer> neighbors : this.wordsMap.values()) {
             allNodes.addAll(neighbors.keySet());
